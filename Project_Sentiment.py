@@ -212,6 +212,8 @@ elif choice == 'Setiment Analysis':
         if uploaded_file is not None:
            # Đọc file dữ liệu
             df = pd.read_csv(uploaded_file, encoding="latin-1")
+            st.write("Danh sách tên cột trong DataFrame:")
+            st.write(df.columns)
             results=[]
             # Iterate over each content in the DataFrame
             for content in df.loc[:, "Ý kiến"]:
