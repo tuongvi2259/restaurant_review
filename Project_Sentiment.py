@@ -255,7 +255,12 @@ elif choice == 'Restaurant Review':
     vectorizer = pickle.load(open('vectorizer.pkl','rb'))
     rf_classifier  = joblib.load(open('P1RFModel.joblib', 'rb'))
     nltk.download('punkt')
-    nltk.download('stopwords')
+    with open("vietnamese-stopwords.txt", "r", encoding="utf-8") as file:
+        file_contents = file.read()
+    # Process the file contents as needed
+        # For example, you can split the text into lines and display them
+        stop_words = file_contents.split("\n")
+    nltk.download('punkt')
 
     def visualize_restaurant_info(restaurant_id):
         # Find comment with the input ID
