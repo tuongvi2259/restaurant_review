@@ -206,7 +206,7 @@ elif choice == 'Setiment Analysis':
     elif type == "Upload file":
         st.subheader("Upload file")
         st.write("""
-        File upload là file ".csv" và có cột "Ý kiến" chứa nội dung comment""")
+        File upload là file ".csv" và có cột "Comment" chứa nội dung comment""")
         
         # Upload file
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
@@ -227,7 +227,7 @@ elif choice == 'Setiment Analysis':
             st.write(df.columns)
             results=[]
             # Iterate over each content in the DataFrame
-            for content in df.loc[:, "Ý kiến"]:
+            for content in df.loc[:, "Comment"]:
                 # Predict sentiment for each content
                 result = predict_single_comment(content) if content.strip() else None
                 # Append the result to the results list
