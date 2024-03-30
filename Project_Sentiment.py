@@ -320,7 +320,6 @@ elif choice == 'Restaurant Review':
             negative_text = ' '.join(negative_comments)
 
             tokens = word_tokenize(negative_text)
-            stop_words = set(stopwords.words('vietnamese'))
             negative_text = [word.lower() for word in tokens if word.isalpha() and word.lower() not in stop_words]
 
             # Get comments classified as positive sentiment
@@ -328,7 +327,6 @@ elif choice == 'Restaurant Review':
             positive_text = ' '.join(positive_comments)
 
             tokens = word_tokenize(positive_text)
-            stop_words = set(stopwords.words('vietnamese'))
             positive_text = [word.lower() for word in tokens if word.isalpha() and word.lower() not in stop_words]
 
             # Generate word clouds for negative and positive comments
