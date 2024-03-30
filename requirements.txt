@@ -3,7 +3,8 @@ numpy
 pandas
 matplotlib
 seaborn
-scikit-learn
+scikit-learn==1.2.2
 wordcloud
 scipy
 imblearn
+joblib==1.1.1
