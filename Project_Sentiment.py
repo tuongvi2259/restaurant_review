@@ -222,6 +222,9 @@ elif choice == 'Setiment Analysis':
     
             # Đọc file dữ liệu
             df = pd.read_csv(file_stringio)
+            # In ra danh sách tên cột
+            st.write("Danh sách tên cột trong DataFrame:")
+            st.write(df.columns)
             results=[]
             # Iterate over each content in the DataFrame
             for content in df.loc[:, "Ý kiến"]:
