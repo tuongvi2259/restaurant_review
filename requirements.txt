@@ -8,3 +8,4 @@ wordcloud
 scipy
 imblearn
 joblib==1.1.1
+nltk
