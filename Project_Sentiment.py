@@ -254,7 +254,8 @@ elif choice == 'Restaurant Review':
     data = pd.read_csv(r"cleaned_data_Sentiment.csv")
     vectorizer = pickle.load(open('vectorizer.pkl','rb'))
     rf_classifier  = joblib.load(open('P1RFModel.joblib', 'rb'))
-
+    nltk.download('punkt')
+    nltk.download('stopwords')
 
     def visualize_restaurant_info(restaurant_id):
         # Find comment with the input ID
