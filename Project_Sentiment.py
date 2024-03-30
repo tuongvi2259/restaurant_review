@@ -214,7 +214,7 @@ elif choice == 'Setiment Analysis':
             df = pd.read_csv(uploaded_file, encoding="latin-1")
             results=[]
             # Iterate over each content in the DataFrame
-            for content in df["Ý kiến"]:
+            for content in df.loc[:, "Ý kiến"]:
                 # Predict sentiment for each content
                 result = predict_single_comment(content) if content.strip() else None
                 # Append the result to the results list
