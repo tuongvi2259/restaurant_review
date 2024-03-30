@@ -210,10 +210,17 @@ elif choice == 'Setiment Analysis':
         # Upload file
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
         if uploaded_file is not None:
-           # Đọc file dữ liệu
-            df = pd.read_csv(uploaded_file, encoding="latin-1")
-            st.write("Danh sách tên cột trong DataFrame:")
-            st.write(df.columns)
+            # Đọc file dữ liệu
+            file_contents = uploaded_file.getvalue().decode("latin-1")
+            # Kiểm tra xem dấu ngăn cách là dấu phẩy hay dấu chấm phẩy
+            if ";" in file_contents:
+                # Thay thế dấu chấm phẩy bằng dấu phẩy
+                file_contents = file_contents.replace(';', ',')
+            # Tạo một đối tượng StringIO từ nội dung đã chỉnh sửa
+            file_stringio = StringIO(file_contents)
+    
+            # Đọc file dữ liệu
+            df = pd.read_csv(file_stringio)
             results=[]
             # Iterate over each content in the DataFrame
             for content in df.loc[:, "Ý kiến"]:
