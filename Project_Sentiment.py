@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from scipy.sparse import hstack
 from wordcloud import WordCloud
 import pickle
+import joblib
 
 
 st.title("Data Science Project")
@@ -54,7 +55,7 @@ elif choice == 'Results of Project':
 
     data = pd.read_csv(r"cleaned_data_Sentiment.csv")
     vectorizer = pickle.load(open('vectorizer.pkl','rb'))
-    rf_classifier  = pickle.load(open('Model Sentiment Annalysis_Restaurant Reviews.sav', 'rb'))
+    rf_classifier  = joblib.load(open('P1RFModel.joblib', 'rb'))
     
     st.subheader("Performance of Project")
     st.write("""Performance of Model:""")
@@ -99,7 +100,7 @@ elif choice == 'Results of Project':
 elif choice == 'Setiment Analysis':
     data = pd.read_csv(r"cleaned_data_Sentiment.csv")
     vectorizer = pickle.load(open('vectorizer.pkl','rb'))
-    rf_classifier  = pickle.load(open('Model Sentiment Annalysis_Restaurant Reviews.sav', 'rb'))
+    rf_classifier  = joblib.load(open('P1RFModel.joblib', 'rb'))
     
     # Load positive and negative words
     positive_words = [
@@ -230,7 +231,7 @@ elif choice == 'Setiment Analysis':
 elif choice == 'Restaurant Review':
     data = pd.read_csv(r"cleaned_data_Sentiment.csv")
     vectorizer = pickle.load(open('vectorizer.pkl','rb'))
-    rf_classifier  = pickle.load(open('Model Sentiment Annalysis_Restaurant Reviews.sav', 'rb'))
+    rf_classifier  = joblib.load(open('P1RFModel.joblib', 'rb'))
 
 
     def visualize_restaurant_info(restaurant_id):
