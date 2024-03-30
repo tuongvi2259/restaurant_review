@@ -212,7 +212,7 @@ elif choice == 'Setiment Analysis':
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
         if uploaded_file is not None:
             # Đọc file dữ liệu
-            file_contents = uploaded_file.getvalue().decode("utf-16")
+            file_contents = uploaded_file.getvalue().decode("latin-1")
             # Kiểm tra xem dấu ngăn cách là dấu phẩy hay dấu chấm phẩy
             if ";" in file_contents:
                 # Thay thế dấu chấm phẩy bằng dấu phẩy
