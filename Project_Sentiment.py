@@ -211,7 +211,7 @@ elif choice == 'Setiment Analysis':
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
         if uploaded_file is not None:
            # Đọc file dữ liệu
-            df = pd.read_csv(uploaded_file)
+            df = pd.read_csv(uploaded_file, encoding="latin-1")
             results=[]
             # Iterate over each content in the DataFrame
             for content in df["Ý kiến"]:
