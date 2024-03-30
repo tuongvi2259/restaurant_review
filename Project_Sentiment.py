@@ -218,10 +218,11 @@ elif choice == 'Setiment Analysis':
         File upload là file ".csv" và có cột "Comment" chứa nội dung comment""")
         
         # Upload file
+        st.markdown('<style>body { font-family: "Arial Unicode MS"; }</style>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
         if uploaded_file is not None:
             # Đọc file dữ liệu
-            file_contents = uploaded_file.getvalue().decode("windows-1258")
+            file_contents = uploaded_file.getvalue().decode("UTF-8")
             # Kiểm tra xem dấu ngăn cách là dấu phẩy hay dấu chấm phẩy
             if ";" in file_contents:
                 # Thay thế dấu chấm phẩy bằng dấu phẩy
