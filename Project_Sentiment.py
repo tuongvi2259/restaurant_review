@@ -14,6 +14,9 @@ from scipy.sparse import hstack
 from wordcloud import WordCloud
 import pickle
 import joblib
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 
 st.title("Data Science Project")
@@ -287,9 +290,16 @@ elif choice == 'Restaurant Review':
             # Predict sentiment
             sentiment_prediction = rf_classifier.predict(restaurant_combined)
 
+
+            # Create a DataFrame to hold comments and their sentiment predictions
+            comments_df = pd.DataFrame({
+                'Comment': restaurant_comments,
+                'Sentiment_Prediction': sentiment_prediction
+            })
+
             # Display sentiment prediction
             st.write("Dự đoán cảm xúc:")
-            st.write(sentiment_prediction)
+            st.write(comments_df)
 
             # Calculate mean rating
             mean_rating = restaurant_data['Rating'].mean()
@@ -303,24 +313,35 @@ elif choice == 'Restaurant Review':
             negative_comments = restaurant_data[restaurant_data['Sentiment'] == 'negative']['processed_comment']
             negative_text = ' '.join(negative_comments)
 
+            tokens = word_tokenize(negative_text)
+            stop_words = set(stopwords.words('vietnamese'))
+            negative_text = [word.lower() for word in tokens if word.isalpha() and word.lower() not in stop_words]
+
             # Get comments classified as positive sentiment
             positive_comments = restaurant_data[restaurant_data['Sentiment'] == 'positive']['processed_comment']
             positive_text = ' '.join(positive_comments)
 
+            tokens = word_tokenize(positive_text)
+            stop_words = set(stopwords.words('vietnamese'))
+            positive_text = [word.lower() for word in tokens if word.isalpha() and word.lower() not in stop_words]
+
             # Generate word clouds for negative and positive comments
             if negative_text:
-                negative_wordcloud = WordCloud(width=800, height=400, background_color='white',max_words=30).generate(negative_text)
+                negative_text_combined = ' '.join(negative_text)
+                negative_wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=30).generate(negative_text_combined)
                 st.write("Word Cloud for Negative Comments:")
                 st.image(negative_wordcloud.to_array(), caption='Negative Sentiment Word Cloud', use_column_width=True)
             else:
                 st.write("Không có bình luận tiêu cực.")
 
             if positive_text:
-                positive_wordcloud = WordCloud(width=800, height=400, background_color='white',max_words=30).generate(positive_text)
+                positive_text_combined = ' '.join(positive_text)
+                positive_wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=30).generate(positive_text_combined)
                 st.write("Word Cloud for Positive Comments:")
                 st.image(positive_wordcloud.to_array(), caption='Positive Sentiment Word Cloud', use_column_width=True)
             else:
                 st.write("Không có bình luận tích cực.")
+
 
     # Streamlit UI
     st.title("Restaurant Information Visualization")
