@@ -183,9 +183,15 @@ elif choice == 'Setiment Analysis':
 # Nếu người dùng chọn nhập nhiều dòng dữ liệu trực tiếp vào một table
     elif type == "Nhập nhiều dòng dữ liệu trực tiếp":
             st.subheader("Nhập nhiều dòng dữ liệu trực tiếp")        
-            df = pd.DataFrame(columns=["Ý kiến"])
+            data = []
+            # Loop to collect user inputs
             for i in range(5):
-                df = df.append({"Ý kiến": st.text_area(f"Nhập ý kiến {i+1}:")}, ignore_index=True)
+                opinion = st.text_area(f"Nhập ý kiến {i+1}:")
+                # Append each user input to the list
+                data.append(opinion)
+            
+            # Create a DataFrame from the list of data
+            df = pd.DataFrame({"Ý kiến": data})
             st.dataframe(df)
             results = []
         # Iterate over each content in the DataFrame
