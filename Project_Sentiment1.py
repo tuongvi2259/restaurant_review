@@ -240,7 +240,7 @@ elif choice == 'Setiment Analysis':
         uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv"])
         if uploaded_file is not None:
             # Đọc file dữ liệu
-            df = pd.read_csv(uploaded_file)
+            df = pd.read_csv(uploaded_file, encoding='utf-8')
             # Kiểm tra xem dấu ngăn cách là dấu phẩy hay dấu chấm phẩy
             if ";" in df.to_string():
                 # Thay thế dấu chấm phẩy bằng dấu phẩy
