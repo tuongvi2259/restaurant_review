@@ -364,9 +364,21 @@ elif choice == 'Restaurant Review':
 
     # Streamlit UI
     st.title("Restaurant Information Visualization")
-    restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 20000):", "")
-    if st.button("Visualize"):
-        if restaurant_id.strip():
-            visualize_restaurant_info(restaurant_id)
-        else:
-            st.write("Vui lòng nhập một ID nhà hàng hợp lệ.")
+    if type == "Nhập dữ liệu vào text area":
+        restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 1612):", "")
+        if st.button("Visualize"):
+            if restaurant_id.strip():
+                visualize_restaurant_info(restaurant_id)
+            else:
+                st.write("Vui lòng nhập một ID nhà hàng hợp lệ.")
+    elif type == "Chọn ID nhà hàng":
+        lst = data['IDRestaurant'].unique()
+        selected_option = st.selectbox('Chọn một tùy chọn:', lst)
+        # Hiển thị giá trị đã chọn
+        st.write('Bạn đã chọn:', selected_option)
+        if st.button("Visualize"):
+            if selected_option:
+                visualize_restaurant_info(selected_option)
+            else:
+                st.write("Vui lòng chọn một ID nhà hàng hợp lệ.")
+        
