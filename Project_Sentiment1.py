@@ -364,6 +364,7 @@ elif choice == 'Restaurant Review':
 
     # Streamlit UI
     st.title("Restaurant Information Visualization")
+    type = st.radio("Chọn cách nhập dữ liệu", options=["Nhập dữ liệu vào text area", "Chọn ID nhà hàng"])
     if type == "Nhập dữ liệu vào text area":
         restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 1612):", "")
         if st.button("Visualize"):
