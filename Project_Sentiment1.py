@@ -360,22 +360,22 @@ elif choice == 'Restaurant Review':
                 st.image(positive_wordcloud.to_array(), caption='Positive Sentiment Word Cloud', use_column_width=True)
             else:
                 st.write("Không có bình luận tích cực.")
+    
 
-
-        # Streamlit UI
-        st.title("Restaurant Information Visualization")
-        if type == "Nhập dữ liệu vào text area":
-            restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 1612):", "")
-            if st.button("Visualize"):
-                if restaurant_id.strip():
-                    visualize_restaurant_info(restaurant_id)
-                else:
-                    st.write("Vui lòng nhập một ID nhà hàng hợp lệ.")
-        elif type == "Chọn ID nhà hàng":
-            lst = data['IDRestaurant'].unique()
-            selected_option = st.selectbox('Chọn một tùy chọn:', lst)
-            # Hiển thị giá trị đã chọn
-            st.write('Bạn đã chọn:', selected_option)
-            if st.button("Visualize"):
-                 visualize_restaurant_info(selected_option)
+    # Streamlit UI
+    st.title("Restaurant Information Visualization")
+    if type == "Nhập dữ liệu vào text area":
+        restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 1612):", "")
+        if st.button("Visualize"):
+            if restaurant_id.strip():
+                visualize_restaurant_info(restaurant_id)
+            else:
+                st.write("Vui lòng nhập một ID nhà hàng hợp lệ.")
+    elif type == "Chọn ID nhà hàng":
+        lst = data['IDRestaurant'].unique()
+        selected_option = st.selectbox('Chọn một tùy chọn:', lst)
+        # Hiển thị giá trị đã chọn
+        st.write('Bạn đã chọn:', selected_option)
+        if st.button("Visualize"):
+            visualize_restaurant_info(selected_option)
             
