@@ -364,7 +364,7 @@ elif choice == 'Restaurant Review':
 
     # Streamlit UI
     st.title("Restaurant Information Visualization")
-    restaurant_id = st.text_input("Nhập ID của nhà hàng:", "")
+    restaurant_id = st.text_input("Nhập ID của nhà hàng (ID từ 1 -> 20000:", "")
     if st.button("Visualize"):
         if restaurant_id.strip():
             visualize_restaurant_info(restaurant_id)
